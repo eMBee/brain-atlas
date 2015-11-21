@@ -1,0 +1,14 @@
+{
+	"category" : "BrainAtlas",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "BrainAtlas",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }
