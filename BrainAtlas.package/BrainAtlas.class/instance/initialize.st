@@ -6,11 +6,10 @@ initialize
 	view := RTView new.
 
 
-"shape := RTCompositeShape new.
+	"shape := RTCompositeShape new.
 shape allOfSameSizeWithPadding.
 shape add: (RTBox new color: Color white; borderWidth: 2; borderColor: Color black).
 shape add: (RTEditableLabel new height: 30)."
-
 	view
 		when: TRMouseClick
 		do:
@@ -52,7 +51,12 @@ shape add: (RTEditableLabel new height: 30)."
 			prevnode := node.
 			activenode := node.
 			view signalUpdate ].
-	^view.
+	view
+		when: TRKeyDown
+		do: [ :evt | 
+			(evt = TRKeyDown new name: 'BACKSPACE')
+				ifTrue: [ self halt ] ].
+	^ view
 
 	"RTEditableLabelTest new editableTextOneLine.
 shape := RTCompositeShape new.
