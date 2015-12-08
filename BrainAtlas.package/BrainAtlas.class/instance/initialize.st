@@ -2,7 +2,6 @@ as yet unclassified
 initialize
 	"open view for the mindmap and set up interactions"
 
-	| view activenode prevnode |
 	view := RTView new.
 
 
@@ -48,14 +47,23 @@ shape add: (RTEditableLabel new height: 30)."
 								withContinuousRectangleAttachPoint;
 								yourself).
 					view add: edge ].
-			prevnode := node.
+			prevnode ifNil: [ prevnode := node ].
 			activenode := node.
 			view signalUpdate ].
 	view
 		when: TRKeyDown
-		do: [ :evt | 
-			(evt = TRKeyDown new name: 'BACKSPACE')
-				ifTrue: [ self halt ] ].
+		do:
+			[ :evt | 
+			evt keyCombination name = 'Backspace'
+				ifTrue:
+					[ view
+						removeEdges: activenode connectedEdges asArray;
+						removeElement: activenode;
+						signalUpdate.
+					prevnode = activenode
+						ifTrue: [ activenode := nil.
+							prevnode := nil ]
+						ifFalse: [ activenode := nil ] ] ].
 	^ view
 
 	"RTEditableLabelTest new editableTextOneLine.

@@ -6,7 +6,9 @@
 		 ],
 	"commentStamp" : "Andy 12/7/2015 13:04",
 	"instvars" : [
-		 ],
+		"view",
+		"activenode",
+		"prevnode" ],
 	"name" : "BrainAtlas",
 	"pools" : [
 		 ],
